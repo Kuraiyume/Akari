@@ -85,7 +85,7 @@ timeout = 5.0
 
 ## License
 
-Akari is licensed under the GNU General Public License.
+- Akari is licensed under the GNU General Public License.
 
 
 
