@@ -5,9 +5,13 @@ Akari is a robust and versatile DNS enumeration tool designed to cater to the ne
 ## Features
 
 - **Comprehensive DNS Lookups:** Supports a wide range of DNS record types including A, AAAA, CNAME, MX, NS, SOA, TXT, CAA, PTR, SRV, NAPTR, DS, DNSKEY, TLSA, and LOC.
+  
 - **Multi-Domain Support:** Easily configure and perform lookups on multiple domains simultaneously using a configuration file.
+
 - **Configurable Timeouts:** Set custom timeouts for DNS queries to ensure timely responses even in slow network conditions.
+
 - **Automatic Retries:** Built-in retry mechanism for handling transient errors, ensuring reliable and consistent results.
+  
 - **Flexible Output Formats:** Save results in plain text, JSON, or CSV formats for easy integration with other tools and workflows.
 
 ## Installation
