@@ -1,7 +1,6 @@
 import argparse
 import configparser
 import dns.resolver
-import concurrent.futures
 import json
 import csv
 from termcolor import colored
@@ -18,14 +17,12 @@ banner = r"""
                 Veilw4raith
 """
 
-def perform_dns_lookup(domain, record_type, timeout, nameserver=None, user_agent=None, ipinfo_token=None):
+def perform_dns_lookup(domain, record_type, timeout, nameserver=None, ipinfo_token=None):
     resolver = dns.resolver.Resolver()
     resolver.timeout = timeout
     resolver.lifetime = timeout
     if nameserver:
         resolver.nameservers = [nameserver]
-    if user_agent:
-        resolver.user_agent = user_agent
     
     result = []
     try:
@@ -86,7 +83,8 @@ def load_config(config_file):
     record_types = config.get('settings', 'record_types').split(',')
     timeout = config.getfloat('settings', 'timeout')
     nameserver = config.get('settings', 'nameserver', fallback=None)
-    return domains, record_types, timeout, nameserver
+    ipinfo_token = config.get('settings', 'ipinfo_token', fallback=None)
+    return domains, record_types, timeout, nameserver, ipinfo_token
 
 def save_results(results, output_file, output_format):
     if output_format == 'json':
@@ -103,8 +101,8 @@ def save_results(results, output_file, output_format):
                 f.write(line + '\n')
 
 @retry(wait_fixed=2000, stop_max_attempt_number=3)
-def perform_dns_lookup_with_retry(domain, record_type, timeout, nameserver=None, user_agent=None, ipinfo_token=None):
-    return perform_dns_lookup(domain, record_type, timeout, nameserver, user_agent, ipinfo_token)
+def perform_dns_lookup_with_retry(domain, record_type, timeout, nameserver=None, ipinfo_token=None):
+    return perform_dns_lookup(domain, record_type, timeout, nameserver, ipinfo_token)
 
 def main():
     print(banner)
@@ -117,14 +115,11 @@ def main():
     parser.add_argument("-o", "--output", type=str, help="Output file to save the results.")
     parser.add_argument("-f", "--format", type=str, choices=['txt', 'json', 'csv'], default='txt', help="Output format for the results.")
     parser.add_argument("-n", "--nameserver", type=str, help="Custom nameserver for DNS resolution.")
-    parser.add_argument("-v", "--verbose", action='store_true', help="Enable verbose output.")
-    parser.add_argument("--threads", type=int, default=10, help="Number of threads for concurrent DNS lookups. Default is 10.")
-    parser.add_argument("--user-agent", type=str, help="Custom user-agent for DNS queries.")
     parser.add_argument("--ipinfo-token", type=str, help="IPinfo API token for IP geolocation.")
     args = parser.parse_args()
 
     if args.config:
-        domains, record_types, timeout, nameserver = load_config(args.config)
+        domains, record_types, timeout, nameserver, ipinfo_token = load_config(args.config)
     else:
         if not args.domain:
             parser.error("The target domain must be specified if no config file is provided.")
@@ -132,18 +127,15 @@ def main():
         record_types = args.types
         timeout = args.timeout
         nameserver = args.nameserver
+        ipinfo_token = args.ipinfo_token
 
     results = []
     
-    with concurrent.futures.ThreadPoolExecutor(max_workers=args.threads) as executor:
-        future_to_domain_record = {executor.submit(perform_dns_lookup_with_retry, domain, record_type, timeout, nameserver, args.user_agent, args.ipinfo_token): (domain, record_type) for domain in domains for record_type in record_types}
-        for future in concurrent.futures.as_completed(future_to_domain_record):
-            domain, record_type = future_to_domain_record[future]
+    for domain in domains:
+        for record_type in record_types:
             try:
-                result = future.result()
+                result = perform_dns_lookup_with_retry(domain, record_type, timeout, nameserver, ipinfo_token)
                 results.extend(result)
-                if args.verbose:
-                    print("\n".join(result))
             except Exception as exc:
                 results.append(colored(f"{record_type} generated an exception: {exc}", 'red'))
 
