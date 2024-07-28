@@ -7,6 +7,16 @@ import csv
 from termcolor import colored
 from retrying import retry
 
+banner = r"""
+           _              _ 
+     /\   | |            (_)
+    /  \  | | ____ _ _ __ _ 
+   / /\ \ | |/ / _` | '__| |
+  / ____ \|   < (_| | |  | |
+ /_/    \_\_|\_\__,_|_|  |_|
+                Veilw4raith
+"""
+
 def perform_dns_lookup(domain, record_type, timeout):
     resolver = dns.resolver.Resolver()
     resolver.timeout = timeout
@@ -58,6 +68,7 @@ def perform_dns_lookup_with_retry(domain, record_type, timeout):
     return perform_dns_lookup(domain, record_type, timeout)
 
 def main():
+    print(banner)
     parser = argparse.ArgumentParser(description="Akari: Advanced DNS Enumerator")
     parser.add_argument("-d", "--domain", type=str, help="The target domain to lookup.")
     parser.add_argument("-t", "--types", type=str, nargs='+', default=["A", "AAAA", "CNAME", "MX", "NS", "SOA", "TXT", "CAA", "PTR", "SRV", "NAPTR", "DS", "DNSKEY", "TLSA", "LOC"],
