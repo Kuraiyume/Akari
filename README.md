@@ -77,6 +77,7 @@ python3 akari.py -d example.com -o results.json -f json
 The configuration file should be in INI format with the following structure:
 
 ```bash
+[settings]
 domains = example.com,example.org
 record_types = A,MX,TXT
 timeout = 5.0
