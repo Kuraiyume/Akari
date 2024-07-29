@@ -48,6 +48,10 @@ Command Line Options
 
 **-f, --format:** Output format for the results. Choices are txt, json, csv. Default is txt.
 
+**-n, --nameserver:** Custom nameserver for DNS resolution.
+
+**--ipinfo-token:** IPinfo API token for IP geolocation.
+
 ## Usage
 
 1. Perform DNS lookups for a single domain with default settings:
