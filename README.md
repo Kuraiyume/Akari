@@ -34,8 +34,6 @@ python3 akari.py -h
 
 ## Available Parameters
 
-Command Line Options
-
 **-d, --domain:** The target domain to lookup. (Required if no config file is provided)
 
 **-t, --types:** The DNS record types to lookup. Default is a comprehensive set of common types.
