@@ -76,6 +76,18 @@ python3 akari.py -c config.ini
 python3 akari.py -d example.com -o results.json -f json
 ```
 
+5. Specify a custom name server for DNS resolution:
+
+```bash
+python3 akari.py -d example.com -n 8.8.8.8
+```
+
+6. Use ipinfo token for IP Geolocation (If the token is not provided it will skip the geolocation process):
+
+```bash
+python3 akari.py -d example.com --ipinfo-token <your_ip_info_token>
+```
+
 ## Configuration File Format
 
 The configuration file should be in INI format with the following structure:
