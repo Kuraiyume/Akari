@@ -9,6 +9,8 @@ Akari is a robust and versatile DNS enumeration tool designed to cater to the ne
 - **Configurable Timeouts:** Set custom timeouts for DNS queries to ensure timely responses even in slow network conditions.
 - **Automatic Retries:** Built-in retry mechanism for handling transient errors, ensuring reliable and consistent results.
 - **Flexible Output Formats:** Save results in plain text, JSON, or CSV formats for easy integration with other tools and workflows.
+- **IP Geolocation Data (Optional):** Retrieve and display geolocation information for IP addresses found in DNS A records using the IPinfo API (to obtain the API token, users need to sign up [here](https://ipinfo.io)). The information includes city, region, country, organization, postal code, timezone, and location coordinates.
+- **Customizable Nameservers:** Optionally specify custom nameservers for DNS resolution to use different DNS servers than the system defaults, allowing for more control over the DNS lookup process.
 
 ## Installation
 
@@ -81,6 +83,8 @@ The configuration file should be in INI format with the following structure:
 domains = example.com,example.org
 record_types = A,MX,TXT
 timeout = 5.0
+nameserver = 8.8.8.8 (optional)
+ipinfo_token = <your_ip_info_token> (optional)
 ```
 
 ## License
