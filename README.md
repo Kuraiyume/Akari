@@ -12,7 +12,7 @@ Akari is a robust and versatile DNS enumeration tool, it provides a comprehensiv
 - **IP Geolocation Data (Optional):** Retrieve and display geolocation information for IP addresses found in DNS A records using the IPinfo API (to obtain the API token, users need to sign up [here](https://ipinfo.io)). The information includes city, region, country, organization, postal code, timezone, and location coordinates.
 - **Customizable Nameservers:** Optionally specify custom nameservers for DNS resolution to use different DNS servers than the system defaults, allowing for more control over the DNS lookup process.
 
-## Installation
+## Installation (Manual)
 
 1. Clone the repository
 
@@ -31,6 +31,18 @@ pip3 install -r requirements.txt
 ```bash
 python3 akari.py -h
 ```
+
+## Installation (PIP)
+
+1. Install Akari using pip
+   ```bash
+   pip3 install akari
+   ```
+
+2. Run the command in help mode to show all the parameters
+   ```bash
+   akari -h
+   ```
 
 ## Available Parameters
 
