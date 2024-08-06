@@ -16,21 +16,21 @@ Akari is a robust and versatile DNS enumeration tool, it provides a comprehensiv
 
 1. Clone the repository
 
-```bash
-git clone https://github.com/veilwr4ith/Akari
-```
+   ```bash
+   git clone https://github.com/veilwr4ith/Akari
+   ```
 
 2. Install the specified requirements for Akari
 
-```bash
-pip3 install -r requirements.txt
-```
+   ```bash
+   pip3 install -r requirements.txt
+   ```
 
 3. Run the tool in help mode to show all the parameters
 
-```bash
-python3 akari.py -h
-```
+   ```bash
+   python3 akari.py -h
+   ```
 
 ## Installation (PIP)
 
