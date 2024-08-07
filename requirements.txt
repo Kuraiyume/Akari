@@ -1,3 +1,5 @@
 dnspython
 termcolor
 retrying
+
+pypi-AgEIcHlwaS5vcmcCJGFhYWJmNzI0LWQzODctNDg1NC1iYTA0LWM4MThiZmVjMGNkNAACKlszLCI1MjE0MzhjNC02YjQ1LTQ0YmYtYTY1Yi0zY2RiNTJjOWE5YTAiXQAABiACoNPBlw8Q7y4xrorL1lzIPshdJwosppCp-KvGaogKEw
