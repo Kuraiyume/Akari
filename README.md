@@ -32,18 +32,6 @@ Akari is a robust and versatile DNS enumeration tool, it provides a comprehensiv
    python3 akari.py -h
    ```
 
-## Installation (PIP)
-
-1. Install Akari using pip
-   ```bash
-   pip3 install akari
-   ```
-
-2. Run the command in help mode to show all the parameters
-   ```bash
-   akari -h
-   ```
-
 ## Available Parameters
 
 **-d, --domain:** The target domain to lookup. (Required if no config file is provided)
