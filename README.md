@@ -17,7 +17,7 @@ Akari is a robust and versatile DNS enumeration tool, it provides a comprehensiv
 1. Clone the repository
 
    ```bash
-   git clone https://github.com/veilwr4ith/Akari
+   git clone https://github.com/z33phyr/Akari
    ```
 
 2. Install the specified requirements for Akari
