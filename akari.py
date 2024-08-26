@@ -14,7 +14,7 @@ banner = r"""
    / /\ \ | |/ / _` | '__| |
   / ____ \|   < (_| | |  | |
  /_/    \_\_|\_\__,_|_|  |_|v0.12
-                Veilwr4ith
+                Zephyr
 """
 
 def perform_dns_lookup(domain, record_type, timeout, nameserver=None, ipinfo_token=None):
